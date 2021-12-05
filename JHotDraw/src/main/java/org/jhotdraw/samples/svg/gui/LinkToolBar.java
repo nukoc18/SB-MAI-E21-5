@@ -56,7 +56,8 @@ public class LinkToolBar extends AbstractToolBar {
             displayer.dispose();
             displayer = null;
         }
-        super.setEditor(newValue);
+        
+        System.out.println(newValue);
         if (newValue != null) {
             displayer = new SelectionComponentDisplayer(editor, this);
         }
@@ -65,13 +66,11 @@ public class LinkToolBar extends AbstractToolBar {
     @Override
     @FeatureEntryPoint(JHotDrawFeatures.LINK_PALETTE)
     protected JComponent createDisclosedComponent(int state) {
-        JPanel p = null;
-        disclosedComponentCase(p, state);
-        return p;
+        return disclosedComponentCase(state);
     }
 
-    private void disclosedComponentCase(JPanel p, int i){
-        p = new JPanel();
+    public JComponent disclosedComponentCase( int i){
+        JPanel p = new JPanel();
         p.setOpaque(false);
         p.setLayout(new GridBagLayout());
         GridBagConstraints gbc;
@@ -173,6 +172,8 @@ public class LinkToolBar extends AbstractToolBar {
         gbc.gridwidth = GridBagConstraints.REMAINDER;
         gbc.anchor = GridBagConstraints.FIRST_LINE_START;
         p.add(targetField, gbc);
+        
+        return p;
 
     }
 
